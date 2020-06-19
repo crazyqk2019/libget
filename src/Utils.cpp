@@ -34,6 +34,16 @@
 
 #include "Utils.hpp"
 
+#ifdef WIN32
+bool is_dir(const char* path) {
+    struct stat s_buf;
+
+    stat(path, &s_buf);
+
+    return (S_ISDIR(s_buf.st_mode));
+}
+#endif
+
 
 #define BUF_SIZE 0x800000 //8MB.
 
@@ -313,7 +323,11 @@ int remove_empty_dirs(const char* name, int count)
 	// go through files in directory
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if (entry->d_type == DT_DIR)
+#ifdef WIN32
+        if (is_dir(entry->d_name))
+#else
+        if (entry->d_type == DT_DIR)
+#endif
 		{
 			char path[1024];
 			// skip current dir or parent dir

@@ -6,6 +6,12 @@
 #include <stdio.h>
 #include <string>
 
+#ifdef WIN32
+typedef int64_t u_int64_t;
+#define mkdir(A, B) mkdir(A)
+bool is_dir(const char* path);
+#endif
+
 // the struct to be passed in the write function.
 typedef struct
 {

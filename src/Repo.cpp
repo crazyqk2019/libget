@@ -7,6 +7,10 @@
 #include <sstream>
 #include <stdarg.h> /* va_list, va_start, va_arg, va_end */
 
+#ifdef WIN32
+#include "strptime.c"
+#endif
+
 using namespace rapidjson;
 
 Repo::Repo()

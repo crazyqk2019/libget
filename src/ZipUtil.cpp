@@ -59,8 +59,12 @@ int Zip::AddDir(const char* internalDir, const char* externalDir)
 		realPath += '/';
 		realPath += dirent->d_name;
 
-		if (dirent->d_type & DT_DIR)
-		{
+#ifdef WIN32
+        if (is_dir(dirent->d_name))
+#else
+        if (dirent->d_type == DT_DIR)
+#endif
+        {
 			AddDir(zipPath.c_str(), realPath.c_str());
 		}
 		else
