@@ -1,4 +1,4 @@
-#include "Package.hpp"
+﻿#include "Package.hpp"
 #include "Utils.hpp"
 #include "ZipUtil.hpp"
 #include "constants.h"
@@ -412,15 +412,15 @@ const char* Package::statusString()
 	switch (this->status)
 	{
 	case LOCAL:
-		return "LOCAL";
+		return "本地应用";
 	case INSTALLED:
-		return "INSTALLED";
+		return "已安装";
 	case UPDATE:
-		return "UPDATE";
+		return "可更新";
 	case GET:
-		return "GET";
+		return "可安装";
 	}
-	return "UNKNOWN";
+	return "未知";
 }
 
 std::string Package::getIconUrl()
